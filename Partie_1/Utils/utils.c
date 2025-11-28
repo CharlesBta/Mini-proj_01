@@ -11,9 +11,10 @@ PixelMap* createPixelMap(int largeur, int hauteur, int maxval)
     }
 
     snprintf(pixelMap->format, sizeof(pixelMap->format), "P6");
-    snprintf(pixelMap->largeur, sizeof(pixelMap->largeur), "%d", largeur);
-    snprintf(pixelMap->hauteur, sizeof(pixelMap->hauteur), "%d", hauteur);
-    snprintf(pixelMap->maxval, sizeof(pixelMap->maxval), "%d", maxval);
+
+    pixelMap->largeur = largeur;
+    pixelMap->hauteur = hauteur;
+    pixelMap->maxval = maxval;
 
     pixelMap->pixels = (Pixel*)malloc(largeur * hauteur * sizeof(Pixel));
     if (pixelMap->pixels == NULL) {
@@ -38,18 +39,18 @@ void writePixelMapToFile(const char* filename, const PixelMap* pixelMap){
         return;
     }
     fprintf(fichier, "%s\n", pixelMap->format);
-    fprintf(fichier, "%s %s\n", pixelMap->largeur, pixelMap->hauteur);
-    fprintf(fichier, "%s\n", pixelMap->maxval);
-    int largeur = atoi(pixelMap->largeur);
-    int hauteur = atoi(pixelMap->hauteur);
+    fprintf(fichier, "%d %d\n", pixelMap->largeur, pixelMap->hauteur);
+    fprintf(fichier, "%d\n", pixelMap->maxval);
+    int largeur = pixelMap->largeur;
+    int hauteur = pixelMap->hauteur;
     fwrite(pixelMap->pixels, sizeof(Pixel), largeur * hauteur, fichier);
     fclose(fichier);
 }
 
 void setPixelToPixelMap(PixelMap* pixelMap, unsigned char r, unsigned char g, unsigned char b)
 {
-    int largeur = atoi(pixelMap->largeur);
-    int hauteur = atoi(pixelMap->hauteur);
+    int largeur = pixelMap->largeur;
+    int hauteur = pixelMap->hauteur;
     for (int i = 0; i < largeur * hauteur; i++) {
         pixelMap->pixels[i].r = r;
         pixelMap->pixels[i].g = g;
@@ -60,14 +61,15 @@ void setPixelToPixelMap(PixelMap* pixelMap, unsigned char r, unsigned char g, un
 void drowCircle(PixelMap* pixelMap, int centerX, int centerY, int radius, unsigned char r, unsigned char g, unsigned char b){
     int dx = 0;
     int dy = 0;
-    int largeur = atoi(pixelMap->largeur);
-    int hauteur = atoi(pixelMap->hauteur);
+    int index = 0;
+    int largeur = pixelMap->largeur;
+    int hauteur = pixelMap->hauteur;
     for (int y = 0; y < hauteur; y++) {
         for (int x = 0; x < largeur; x++) {
             dx = x - centerX;
             dy = y - centerY;
             if (dx * dx + dy * dy <= radius * radius) {
-                int index = y * largeur + x;
+                index = y * largeur + x;
                 pixelMap->pixels[index].r = r;
                 pixelMap->pixels[index].g = g;
                 pixelMap->pixels[index].b = b;

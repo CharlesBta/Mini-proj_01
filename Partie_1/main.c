@@ -19,7 +19,7 @@ int main() {
         return 1;
     }
 
-    setPixelToPixelMap(pixelMap, 255, 0, 255); 
+    setPixelToPixelMap(pixelMap, 0, 0, 255); 
     writePixelMapToFile("image.ppm", pixelMap);
     freePixelMap(pixelMap);
 
@@ -29,7 +29,7 @@ int main() {
         fprintf(stderr, "Erreur lors de la création de la PixelMap\n");
         return 1;
     }
-    setPixelToPixelMap(pixelMapCircle, 255, 255, 255); 
+    setPixelToPixelMap(pixelMapCircle, 0, 255, 255); 
     drowCircle(pixelMapCircle, CENTER_X, CENTER_Y, RADIUS, 255, 100, 255); 
     writePixelMapToFile("circle.ppm", pixelMapCircle);
     freePixelMap(pixelMapCircle);
