@@ -77,16 +77,16 @@ int convergence(double x, double y)
     for (int n = 0; n < MAX_ITER; n++)
     {
         u = u * u + z;
-        if (cabs(u) > 2.0)
+        if (cabs(u) >= 2.0)
         {
-            
             return n;
         }
     }
     return 0;
 }
 
-void pixel_to_coord(int px, int py, double *x, double *y) {
+void pixel_to_coord(int px, int py, double *x, double *y)
+{
     *x = X_MIN + (X_MAX - X_MIN) * px / (LARGEUR - 1);
     *y = Y_MIN + (Y_MAX - Y_MIN) * py / (HAUTEUR - 1);
 }
@@ -108,8 +108,6 @@ void drawMandelbrot(PixelMap *pixelMap, unsigned char r, unsigned char b)
             pixelMap->pixels[index].r = r;
             pixelMap->pixels[index].g = (unsigned char)(n * 3);
             pixelMap->pixels[index].b = b;
-
         }
     }
 }
-
