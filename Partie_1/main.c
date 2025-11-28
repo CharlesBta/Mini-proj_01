@@ -9,11 +9,11 @@
 
 #define CENTER_X (LARGEUR / 2)
 #define CENTER_Y (HAUTEUR / 2)
-#define RADIUS 200
+#define RADIUS 100
 
 int main() {
     // Création d'une image unie
-    PixelMap* pixelMap = createPixelMap(LARGEUR, HAUTEUR, MAXVAL);
+    PixelMap* pixelMap = createPixelMap(10, 10, MAXVAL);
     if (pixelMap == NULL) {
         fprintf(stderr, "Erreur lors de la création de la PixelMap\n");
         return 1;
@@ -30,7 +30,7 @@ int main() {
         return 1;
     }
     setPixelToPixelMap(pixelMapCircle, 0, 255, 255); 
-    drowCircle(pixelMapCircle, CENTER_X, CENTER_Y, RADIUS, 255, 100, 255); 
+    drawCircle(pixelMapCircle, CENTER_X, CENTER_Y, RADIUS, 255, 100, 255); 
     writePixelMapToFile("circle.ppm", pixelMapCircle);
     freePixelMap(pixelMapCircle);
 

@@ -58,7 +58,7 @@ void setPixelToPixelMap(PixelMap* pixelMap, unsigned char r, unsigned char g, un
     }
 }
 
-void drowCircle(PixelMap* pixelMap, int centerX, int centerY, int radius, unsigned char r, unsigned char g, unsigned char b){
+void drawCircle(PixelMap* pixelMap, int centerX, int centerY, int radius, unsigned char r, unsigned char g, unsigned char b){
     int dx = 0;
     int dy = 0;
     int index = 0;

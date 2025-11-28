@@ -1,3 +1,12 @@
+#define X_MIN -2.0
+#define Y_MIN 1.0
+#define X_MAX 1.0
+#define Y_MAX -1.0
+
+#define LARGEUR 900
+#define HAUTEUR 600
+#define MAXVAL 255
+
 // structure des pixels liste chaînée
 typedef struct 
 {
@@ -24,4 +33,6 @@ void writePixelMapToFile(const char* filename, const PixelMap* pixelMap);
 
 void setPixelToPixelMap(PixelMap* pixelMap, unsigned char r, unsigned char g, unsigned char b);
 
-void drawCircle(PixelMap* pixelMap, int centerX, int centerY, int radius, unsigned char r, unsigned char g, unsigned char b);
+int convergence(double x, double y);
+
+void drawMandelbrot(PixelMap* pixelMap, unsigned char r, unsigned char b);
