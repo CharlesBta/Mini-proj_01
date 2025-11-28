@@ -79,6 +79,7 @@ int convergence(double x, double y)
         u = u * u + z;
         if (cabs(u) > 2.0)
         {
+            
             return n;
         }
     }
