@@ -7,6 +7,8 @@ int main() {
     double x_max = X_MAX;
     double y_max = Y_MAX;
 
+    float zoom_factor = 0.2f;
+
     // Création d'une image 
     PixelMap* pixelMap = createPixelMap(LARGEUR, HAUTEUR, MAXVAL);
     if (pixelMap == NULL) {
@@ -15,10 +17,10 @@ int main() {
     }
 
     for (int i = 0; i < 10; i++) {
-        x_min = x_min + (TARGET_X - x_min) * 0.2;  
-        y_min = y_min + (TARGET_Y - y_min) * 0.2;
-        x_max = x_max + (TARGET_X - x_max) * 0.2;
-        y_max = y_max + (TARGET_Y - y_max) * 0.2;
+        x_min = x_min + (TARGET_X - x_min) * zoom_factor;  
+        y_min = y_min + (TARGET_Y - y_min) * zoom_factor;
+        x_max = x_max + (TARGET_X - x_max) * zoom_factor;
+        y_max = y_max + (TARGET_Y - y_max) * zoom_factor;
 
         drawMandelbrot(pixelMap, 0, 0, x_min, x_max, y_min, y_max);
         char filename[20];
